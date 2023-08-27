@@ -32,7 +32,7 @@ jobs:
 
     - name: Install ChromeDriver (Hardcoded)
       run: |
-        wget https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_linux64.zip
+        wget https://chromedriver.storage.googleapis.com/116.0.5845.110/chromedriver_linux64.zip
         unzip chromedriver_linux64.zip
         sudo mv chromedriver /usr/bin/chromedriver
         sudo chown root:root /usr/bin/chromedriver
