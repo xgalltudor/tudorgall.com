@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   build:
@@ -16,7 +17,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.9'  # replace with the version you are using
+        python-version: '3.x'  # replace with the version you are using
 
     - name: Install Dependencies
       run: |
@@ -27,4 +28,4 @@ jobs:
     # Run your Robot Framework tests
     - name: Run Tests
       run: |
-        robot -d Results Tests/  # replace 'Tests/' with your test directory if it's different
+        robot -d Results RobotFrameworkTests/Tests/
