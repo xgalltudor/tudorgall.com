@@ -57,6 +57,9 @@ ${FACEBOOK}                 xpath=(//a[contains(@href,'https://www.facebook.com/
 ${INSTAGRAM}                xpath=(//a[contains(@href,'https://instagram.com/xgalltudor')])[1]
 ${TWITTER}                  xpath=(//a[contains(@href,'https://twitter.com/xgalltudor')])[1]
 
+# Download Directory Path
+${CV_PDF_URL}               https://tudorgall.files.wordpress.com/2023/08/tudor-galls-cv.pdf
+
 
 
 

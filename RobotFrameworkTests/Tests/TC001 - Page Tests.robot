@@ -3,11 +3,12 @@ Documentation  Robot Framework Page Tests for www.tudorgall.com
 Library  SeleniumLibrary
 Library  Collections
 Resource  Resources/keywords.robot
+Suite Setup    Open Site
+Suite Teardown    Close All Browsers
 
 *** Test Cases ***
 Navigate Directly To Home Page
     [Tags]  Home
-    Open Site
     Navigate To Page  Home
     User Is On Home Page
 

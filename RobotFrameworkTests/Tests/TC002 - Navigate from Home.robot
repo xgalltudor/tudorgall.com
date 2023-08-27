@@ -4,11 +4,12 @@ Library  SeleniumLibrary
 Library  Collections
 Resource  Resources/variables.robot
 Resource  Resources/keywords.robot
+Suite Setup    Open Site
+Suite Teardown    Close All Browsers
 
 *** Test Cases ***
 Navigate To Home Page
     [Tags]  Home
-    Open Site
     User Is On Home Page
 
 Click on the About Me Upper Button
@@ -36,7 +37,6 @@ Click on the About Me Lower Button
     Click Element  ${ABOUT ME LOWER BUTTON}
     User Is On About Me Page
 
-
 Click on the CV Lower Button
     [Tags]    CV
     Click Element  ${CV LOWER BUTTON}
@@ -51,6 +51,5 @@ Click on the Home Lower Button
     [Tags]    Home
     Click Element    ${HOME LOWER BUTTON}
     User Is On Home Page
-    Close Browser
 
 

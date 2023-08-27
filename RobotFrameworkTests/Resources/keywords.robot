@@ -80,4 +80,18 @@ User is on Contact Page
     Page Contains Upper and Lower Buttons
     Contact Page Contains Inner Elements
 
+Switch To New Tab
+    ${windows}=    Get Window Handles
+    Log     ${windows}
+    ${NEW_WINDOW}=    Set Variable If    '${windows}[1]'!='${EMPTY}'    ${windows}[1]    ${EMPTY}
+    Run Keyword If    '${NEW_WINDOW}'!='${EMPTY}'    Switch Window    ${NEW_WINDOW}
+    Should Not Be Empty    ${NEW_WINDOW}    New tab did not open within the given time
+
+Verify PDF Opens in New Tab when the User clicks on "Download my PDF Curriculum Vitae"
+    ${MAIN_WINDOW}=    Get Window Handles
+    Log     ${MAIN_WINDOW}
+    Click Element    ${DOWNLOAD CV}
+    Wait Until Keyword Succeeds    30 seconds    5 seconds    Switch To New Tab
+    Location Should Be    ${CV_PDF_URL}
+
 
