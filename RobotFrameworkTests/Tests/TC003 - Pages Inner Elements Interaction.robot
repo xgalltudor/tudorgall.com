@@ -2,8 +2,8 @@
 Documentation  Robot Framework Page Tests for www.tudorgall.com
 Library  SeleniumLibrary
 Library  Collections
-Resource  Resources/variables.robot
-Resource  Resources/keywords.robot
+Resource  ../Resources/variables.robot
+Resource  ../Resources/keywords.robot
 Test Setup    Open Site
 Test Teardown    Close All Browsers
 
