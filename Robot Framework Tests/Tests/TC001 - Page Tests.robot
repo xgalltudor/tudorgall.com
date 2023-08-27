@@ -1,33 +1,29 @@
 *** Settings ***
 Documentation  Robot Framework Page Tests for www.tudorgall.com
 Library  SeleniumLibrary
-
-*** Variables ***
-    ${URL}  https://www.tudorgall.com
-    ${BROWSER}  Chrome
+Library  Collections
+Resource  Resources/variables.robot
+Resource  Resources/keywords.robot
 
 *** Test Cases ***
-
 Navigate To Home Page
-    [Tags]  Home
-    Open Browser  ${URL}  ${BROWSER}
-    Title Should Be  Tudor Gall – Test Automation Developer
-    Close Browser
+    [Tags]  home
+    Open Site
+    Navigate To Page  Home
+    Check Page Title  ${HOME TITLE}
 
 Navigate To About Me Page
-    [Tags]  AboutMe
-    Open Browser  ${URL}/about-me  ${BROWSER}
-    Title Should Be  About Me – Tudor Gall
-    Close Browser
+    [Tags]    AboutMe
+    Navigate To Page  About Me
+    Check Page Title  ${ABOUT ME TITLE}
 
 Navigate To Curriculum Vitae Page
     [Tags]  CV
-    Open Browser  ${URL}/curriculum-vitae  ${BROWSER}
-    Title Should Be  Curriculum Vitae – Tudor Gall
-    Close Browser
+    Navigate To Page  CV
+    Check Page Title  ${CV TITLE}
 
 Navigate To Contact Page
     [Tags]  Contact
-    Open Browser  ${URL}/contact  ${BROWSER}
-    Title Should Be  Contact – Tudor Gall
+    Navigate To Page  Contact
+    Check Page Title  ${CONTACT TITLE}
     Close Browser
