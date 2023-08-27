@@ -21,8 +21,6 @@ jobs:
     - name: Robot Framework
       uses: joonvena/robotframework-docker-action@v1.0
 
-    # Install Chrome
-
     - name: Display Chrome Version
       run: |
         echo "CHROME VERSION:"
