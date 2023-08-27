@@ -7,35 +7,50 @@ Resource  Resources/keywords.robot
 
 *** Test Cases ***
 Navigate To Home Page
-    [Tags]  home
+    [Tags]  Home
     Open Site
-    Navigate To Page  Home
-    Check Page Title  ${HOME TITLE}
+    User Is On Home Page
 
 Click on the About Me Upper Button
-    [Tags]  about
-    Page Contains Upper and Lower Buttons
+    [Tags]  About
     Click Element  ${ABOUT ME UPPER BUTTON}
-    Check Page Title    ${ABOUT ME TITLE}
-
+    User Is On About Me Page
 
 Click on the CV Upper Button
     [Tags]    CV
-    Page Contains Upper and Lower Buttons
     Click Element  ${CV UPPER BUTTON}
-    Check Page Title    ${CV TITLE}
+    User Is On CV Page
 
 Click on the Contact Upper Button
     [Tags]    Contact
-    Page Contains Upper and Lower Buttons
     Click Element    ${CONTACT UPPER BUTTON}
-    Check Page Title    ${CONTACT TITLE}
+    User Is On Contact Page
 
 Click on the Home Upper Button
     [Tags]    Home
-    Page Contains Upper and Lower Buttons
     Click Element    ${HOME UPPER BUTTON}
-    Check Page Title    ${HOME TITLE}
+    User Is On Home Page
+
+Click on the About Me Lower Button
+    [Tags]  About
+    Click Element  ${ABOUT ME LOWER BUTTON}
+    User Is On About Me Page
+
+
+Click on the CV Lower Button
+    [Tags]    CV
+    Click Element  ${CV LOWER BUTTON}
+    User Is On CV Page
+
+Click on the Contact Lower Button
+    [Tags]    Contact
+    Click Element    ${CONTACT LOWER BUTTON}
+    User Is On Contact Page
+
+Click on the Home Lower Button
+    [Tags]    Home
+    Click Element    ${HOME LOWER BUTTON}
+    User Is On Home Page
     Close Browser
 
 
