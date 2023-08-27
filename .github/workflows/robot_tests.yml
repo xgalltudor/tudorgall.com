@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +16,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x'  # replace with the version you are using
+        python-version: '3.9'
 
     - name: Install Dependencies
       run: |
@@ -25,7 +24,16 @@ jobs:
         pip install robotframework
         pip install robotframework-seleniumlibrary
 
-    # Run your Robot Framework tests
+    - name: List directory contents  # Debugging step
+      run: ls -R
+
     - name: Run Tests
       run: |
-        robot -d Results RobotFrameworkTests/Tests/
+        robot -V Resources/variables.robot -R Resources/keywords.robot -d Results RobotFrameworkTests/Tests/
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: Results/
