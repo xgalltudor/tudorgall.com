@@ -18,25 +18,29 @@ jobs:
       with:
         python-version: '3.9'
 
-    - name: Install Chrome (Hardcoded)
+    # Install Chrome
+    - name: Setup Chrome
       run: |
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        sudo dpkg -i google-chrome-stable_current_amd64.deb
-        sudo apt-get -f install
-        sudo apt-mark hold google-chrome-stable
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
 
-    - name: Debug Chrome Version
+    - name: Display Chrome Version
       run: |
-        CHROME_VERSION=$(google-chrome-stable --version | awk '{ print $3 }')
-        echo "Chrome Version: $CHROME_VERSION"
+        echo "CHROME VERSION:"
+        google-chrome-stable --version
 
-    - name: Install ChromeDriver (Hardcoded)
+    - name: Install ChromeDriver
       run: |
-        wget https://chromedriver.storage.googleapis.com/116.0.5845.110/chromedriver_linux64.zip
+        CHROME_MAJOR_VERSION=$(google-chrome-stable --version | awk '{ print $3 }' | cut -d'.' -f1)
+        CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_MAJOR_VERSION}")
+        wget "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip"
         unzip chromedriver_linux64.zip
-        sudo mv chromedriver /usr/bin/chromedriver
-        sudo chown root:root /usr/bin/chromedriver
-        sudo chmod +x /usr/bin/chromedriver
+        sudo mv chromedriver /usr/local/bin/
+
+    - name: Display ChromeDriver Version
+      run: |
+        echo "CHROMEDRIVER VERSION:"
+        chromedriver --version
 
     - name: Install Dependencies
       run: |
