@@ -10,8 +10,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: List Directory Structure
+    - name: List path
       run: pwd
+    
+    - name: List Directory Structure
       run: ls -R
 
     - name: Print Keywords File
