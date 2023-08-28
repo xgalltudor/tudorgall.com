@@ -60,7 +60,23 @@ ${TWITTER}                  xpath=(//a[contains(@href,'https://twitter.com/xgall
 # Download Directory Path
 ${CV_PDF_URL}               https://tudorgall.files.wordpress.com/2023/08/tudor-galls-cv.pdf
 
+# Contact fields
+# required
+${CONTACT NAME}             xpath=(//input[@id='g36-name'])[1]
+${CONTACT EMAIL}            xpath=(//input[@id='g36-email'])[1]
+${CONTACT MESSAGE}          xpath=(//textarea[@id='contact-form-comment-g36-tellmemore'])[1]
+# optional
+${CONTACT PHONE}            xpath=(//input[@id='g36-phone'])[1]
 
+# Dummy contact details
+${NAME INPUT}               Spamiel Spamilton
+${EMAIL INPUT}              spam@spamail.com
+${MESSAGE INPUT}            Hello Tudor! This is a SPAM message from "TC005 - Submit a Contact Message.robot"
+${PHONE INPUT}              0740000000
+
+# Message sent confirmation
+${MESSAGE SENT}             xpath=(//h4[normalize-space()='Your message has been sent'])[1]
+${MESSAGE SENT TEXT}        Your message has been sent
 
 
 

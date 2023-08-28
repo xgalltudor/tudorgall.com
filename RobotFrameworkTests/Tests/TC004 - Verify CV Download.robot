@@ -10,6 +10,7 @@ Test Teardown    Close All Browsers
 
 *** Test Cases ***
 Navigate to CV Page and check the PDF CV Downloads
+    [Tags]  CV  Download
     User Is On Home Page
     Click Element   ${CV UPPER BUTTON}
     User Is On CV Page
