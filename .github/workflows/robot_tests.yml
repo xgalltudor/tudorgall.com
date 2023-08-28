@@ -10,6 +10,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+    - name: List Directory Structure
+      run: ls -R
+
+    - name: Print Keywords File
+      run: cat path/to/your/Resources/keywords.robot
+      
     - uses: actions/checkout@v2
     - name: Run tests
       uses: joonvena/robotframework-docker-action@v1.0
