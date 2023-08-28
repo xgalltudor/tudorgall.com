@@ -14,16 +14,16 @@ jobs:
       run: pwd
     
     - name: List Directory Structure
-      run: ls -R
+      run: ls -R .
 
     - name: Print Keywords File
-      run: cat RobotFrameworkTests/Resources/keywords.robot
+      run: cat /home/runner/work/tudorgall.com/tudorgall.com/RobotFrameworkTests/Resources/keywords.robot
       
     - uses: actions/checkout@v2
     - name: Run tests
       uses: joonvena/robotframework-docker-action@v1.0
       with:
-        robot_tests_dir: RobotFrameworkTests/Tests
+        robot_tests_dir: /home/runner/work/tudorgall.com/tudorgall.com/RobotFrameworkTests/Tests
     - name: Store test report
       uses: actions/upload-artifact@v1
       if: always()
