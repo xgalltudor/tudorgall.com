@@ -57,6 +57,24 @@ ${FACEBOOK}                 xpath=(//a[contains(@href,'https://www.facebook.com/
 ${INSTAGRAM}                xpath=(//a[contains(@href,'https://instagram.com/xgalltudor')])[1]
 ${TWITTER}                  xpath=(//a[contains(@href,'https://twitter.com/xgalltudor')])[1]
 
+${LINKEDIN URL}             https://www.linkedin.com/in/tudor-gall
+${WHATSAPP URL}             https://wa.me/40746677095
+${GITHUB URL}               https://github.com/xgalltudor
+${FACEBOOK URL}             https://www.facebook.com/xgalltudor
+${INSTAGRAM URL}            https://instagram.com/xgalltudor
+${TWITTER URL}              https://twitter.com/xgalltudor
+
+# Contact info
+${YAHOO MAIL}               xpath=(//a[normalize-space()='xgalltudor@yahoo.com'])[1]
+${GOOGLE MAIL}              xpath=(//a[normalize-space()='xgalltudor23@gmail.com'])[1]
+${PHONE NUMBER}             xpath=(//a[normalize-space()='+40 746 677 095'])[1]
+
+${YAHOO MAIL LINK}          mailto:xgalltudor@yahoo.com
+${GOOGLE MAIL LINK}         mailto:xgalltudor23@gmail.com
+${PHONE NUMBER LINK}        tel:+40746677095
+
+
+
 # Download Directory Path
 ${CV_PDF_URL}               https://tudorgall.files.wordpress.com/2023/08/tudor-galls-cv.pdf
 

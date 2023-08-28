@@ -94,4 +94,41 @@ Verify PDF Opens in New Tab when the User clicks on "Download my PDF Curriculum 
     Wait Until Keyword Succeeds    30 seconds    5 seconds    Switch To New Tab
     Location Should Be    ${CV_PDF_URL}
 
+Verify Social Media Link Opens In New Tab
+    [Arguments]    ${element_locator}    ${expected_url}
+    # Verify the 'href' attribute contains the expected URL
+    ${actual_url}=    Get Element Attribute    ${element_locator}  href
+    Should Be Equal    ${actual_url}    ${expected_url}
+    Log  Verified the 'href' attribute contains the expected URL
+
+    # Verify the link is set to open in a new tab/window
+    ${target_value}=    Get Element Attribute    ${element_locator}  target
+    Should Be Equal    ${target_value}    _blank
+    Log  Verified the link is set to open in a new tab/window
+
+    # Click the link, which should open in a new tab
+    Click Element    ${element_locator}
+    Log  Clicked the link, which should open in a new tab
+
+    # Switch to the newly opened tab
+    ${all_handles}=    Get Window Handles
+    ${new_handle}=    Get From List    ${all_handles}    -1
+    Switch Window    ${new_handle}
+    Log  Switched to the newly opened tab
+
+    # Close the new tab and switch back to the original tab
+    Wait Until Page Contains Element    tag:body    timeout=5s
+    Close Window
+    Log  Closed the newly opened tab
+    ${original_handle}=    Get From List    ${all_handles}    0
+    Switch Window    ${original_handle}
+    Log  Switched back to the window
+
+Verify email or phone link
+    [Arguments]    ${element_locator}    ${expected_url}
+    # Verify the 'href' attribute contains the expected URL
+    ${actual_url}=    Get Element Attribute    ${element_locator}  href
+    Should Be Equal    ${actual_url}    ${expected_url}
+    Log  Verified the 'href' attribute contains the expected URL
+
 
