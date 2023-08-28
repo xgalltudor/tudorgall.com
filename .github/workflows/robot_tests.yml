@@ -7,46 +7,32 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
-
-    - name: Setup Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.9'
-        
-    - name: Robot Framework
+    - name: Run tests
       uses: joonvena/robotframework-docker-action@v1.0
-
-    - name: Display Chrome Version
-      run: |
-        echo "CHROME VERSION:"
-        google-chrome-stable --version
-
-    - name: Display ChromeDriver Version
-      run: |
-        echo "CHROMEDRIVER VERSION:"
-        chromedriver --version
-
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install robotframework
-        pip install robotframework-seleniumlibrary
-
-    - name: List directory contents  # Debugging step
-      run: ls -R
-
-    - name: Run Tests
-      run: |
-        robot --variable BROWSER:headlesschrome -d Results RobotFrameworkTests/Tests/
-
-    - name: Upload test results
-      if: always()
-      uses: actions/upload-artifact@v2
       with:
-        name: test-results
-        path: Results/
+        robot_tests_dir: RobotFrameworkTests/Tests
+    - name: Store test report
+      uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: reports
+        path: reports
+
+  report:
+    if: always()
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Download test report
+      uses: actions/download-artifact@v1
+      with:
+        name: reports
+    - name: Output report
+      uses: joonvena/robotframework-reporter-action@v2
+      with:
+        gh_access_token: ${{ secrets.GITHUB_TOKEN }}
