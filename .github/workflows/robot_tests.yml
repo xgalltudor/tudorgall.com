@@ -18,7 +18,7 @@ jobs:
     - name: Run tests
       uses: joonvena/robotframework-docker-action@v1.0
       with:
-        robot_tests_dir: ./RobotFrameworkTests/Tests:
+        robot_tests_dir: ./RobotFrameworkTests/Tests
     - name: Store test report
       uses: actions/upload-artifact@v1
       if: always()
