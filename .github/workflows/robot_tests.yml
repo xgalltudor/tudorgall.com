@@ -11,10 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: List Directory Structure
+      run: pwd
       run: ls -R
 
     - name: Print Keywords File
-      run: cat path/to/your/Resources/keywords.robot
+      run: cat RobotFrameworkTests/Resources/keywords.robot
       
     - uses: actions/checkout@v2
     - name: Run tests
