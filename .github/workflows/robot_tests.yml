@@ -10,6 +10,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
+
     - name: List path
       run: pwd
     
@@ -18,8 +20,7 @@ jobs:
 
     - name: Print Keywords File
       run: cat /home/runner/work/tudorgall.com/tudorgall.com/RobotFrameworkTests/Resources/keywords.robot
-      
-    - uses: actions/checkout@v2
+    
     - name: Run tests
       uses: joonvena/robotframework-docker-action@v1.0
       with:
