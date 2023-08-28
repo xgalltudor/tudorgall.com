@@ -11,20 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-
-    - name: List path
-      run: pwd
     
     - name: List Directory Structure
       run: ls -R .
-
-    - name: Print Keywords File
-      run: cat /home/runner/work/tudorgall.com/tudorgall.com/RobotFrameworkTests/Resources/keywords.robot
     
     - name: Run tests
       uses: joonvena/robotframework-docker-action@v1.0
       with:
-        robot_tests_dir: /home/runner/work/tudorgall.com/tudorgall.com/RobotFrameworkTests/Tests
+        robot_tests_dir: ./RobotFrameworkTests/Tests:
     - name: Store test report
       uses: actions/upload-artifact@v1
       if: always()
