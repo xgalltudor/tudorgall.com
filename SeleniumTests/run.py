@@ -1,7 +1,10 @@
-import pytest
+import subprocess
 
-if __name__ == "__main__":
-    # -v is for verbosity
-    # --html=report.html generates an HTML report
-    # ./test_suites specifies the directory where the test files are located
-    pytest.main(["-v", "--html=report.html", "./test_suites"])
+
+def run_tests():
+    # Run pytest on the test_suites directory with verbosity level 2
+    subprocess.run(['pytest', '-vv', './test_suites'])
+
+
+if __name__ == '__main__':
+    run_tests()
