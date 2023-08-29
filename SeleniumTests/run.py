@@ -1,7 +1,7 @@
 import subprocess
 import os
 
-
+@pytest.mark.usefixtures("setup")
 def run_tests():
     # Get the directory where the script resides
     script_dir = os.path.dirname(__file__)
