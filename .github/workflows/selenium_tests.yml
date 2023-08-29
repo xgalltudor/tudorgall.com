@@ -16,17 +16,16 @@ jobs:
     - name: List Directory Structure
       run: ls -R .
       
-    - name: Run Pytest
-      uses: fylein/python-pytest-github-action@v1
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
-        args: pip3 install -r requirements.txt && python ./SeleniumTests/run.py
-
-    - name: Upload Pytest Reports
-      if: always()
-      uses: actions/upload-artifact@v2
-      with:
-        name: pytest-reports
-        path: pytest-reports
+        python-version: '3.9'
+    - name: Install software
+      run: sudo apt-get install -y chromium-browser
+    - name: Install the necessary packages
+      run: pip install requests webdriver-manager selenium pytest
+    - name: Run the PytTest script
+      run: pytest -rA
 
   report:
     if: always()
