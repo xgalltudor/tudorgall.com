@@ -7,45 +7,26 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  build_and_test:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Setup Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.8'
 
-    - name: Install Chrome
-      run: sudo apt-get install -y google-chrome-stable
+    - name: Build Docker image
+      run: docker build -t mytestimage .
 
-    - name: Install ChromeDriver
-      run: |
-        CHROME_VERSION=$(google-chrome-stable --version | awk '{ print $3 }' | awk -F'.' '{ print $1 }')
-        DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
-        curl -S -o chromedriver.zip https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip
-        unzip chromedriver.zip
-        sudo mv chromedriver /usr/local/bin/
-        chromedriver --version
+    - name: Run Pytest in Docker container
+      run: docker run mytestimage python ./SeleniumTests/run.py
 
-    - name: Install dependencies
-      run: |
-        pip install selenium pytest
-
-    - name: List Directory Structure
-      run: ls -R .
-
-    - name: Run Pytest
-      run: python ./SeleniumTests/run.py
-    
   report:
     if: always()
-    needs: [test]
+    needs: [build_and_test]
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Download Pytest Reports
       uses: actions/download-artifact@v2
       with:
