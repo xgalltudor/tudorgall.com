@@ -1,0 +1,54 @@
+name: Run Pytest Suite
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup Python Environment
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+        
+    - name: Install Chrome and Chromedriver
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y unzip xvfb google-chrome-stable
+        CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
+        wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+        sudo unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
+    
+    - name: List Directory Structure
+      run: ls -R .
+    
+    - name: Install dependencies and Run Pytest
+      run: |
+        pip install selenium pytest
+        pytest ./test_suites
+    
+    - name: Store Test Reports
+      uses: actions/upload-artifact@v2
+      if: always()
+      with:
+        name: pytest-reports
+        path: ./pytest-reports
+        
+  report:
+    if: always()
+    needs: [test]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Download Pytest Reports
+      uses: actions/download-artifact@v2
+      with:
+        name: pytest-reports
