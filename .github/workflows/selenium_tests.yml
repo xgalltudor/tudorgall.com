@@ -25,7 +25,7 @@ jobs:
       run: ls -R .
 
     - name: Run Pytest
-      run: python run.py
+      run: python ./SeleniumTests/run.py
 
     - name: Run Robot Framework tests
       uses: joonvena/robotframework-docker-action@v1.0
