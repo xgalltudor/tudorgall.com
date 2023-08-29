@@ -1,4 +1,4 @@
-name: Run Robot Framework and Pytest
+name: Run Selenium (Pytest) Tests
 
 on:
   push:
@@ -26,16 +26,15 @@ jobs:
 
     - name: Run Pytest
       run: python ./SeleniumTests/run.py
-
-    - name: Run Robot Framework tests
-      uses: joonvena/robotframework-docker-action@v1.0
-      with:
-        robot_tests_dir: 'RobotFrameworkTests'
-        robot_reports_dir: 'reports'
     
-    - name: Store Robot Framework report
-      uses: actions/upload-artifact@v1
-      if: always()
+  report:
+    if: always()
+    needs: [test]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Download Pytest Reports
+      uses: actions/download-artifact@v2
       with:
-        name: reports
-        path: reports
+        name: pytest-reports
