@@ -12,22 +12,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
-    - name: Build Docker image
-      run: docker build -t mytestimage .
-
-    - name: List files in current directory
-      run: ls -al
-
-    - name: Run Pytest in Docker container
-      run: docker run mytestimage python ./SeleniumTests/run.py
+        
+    - name: List Directory Structure
+      run: ls -R .
+      
+    - name: Run Pytest
+      uses: fylein/python-pytest-github-action@v1
+      with:
+        args: pip3 install -r requirements.txt && python ./SeleniumTests/run.py
 
     - name: Upload Pytest Reports
       if: always()
       uses: actions/upload-artifact@v2
       with:
         name: pytest-reports
-        path: pytest-reports  # Replace with the actual path to your Pytest reports
+        path: pytest-reports
 
   report:
     if: always()
