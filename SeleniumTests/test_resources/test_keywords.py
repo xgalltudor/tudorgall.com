@@ -2,6 +2,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from test_resources.test_variables import Locators
+from selenium.common.exceptions import TimeoutException
 from selenium import webdriver
 import time
 
@@ -28,11 +29,15 @@ class Keywords:
 
     def click_element(self, element):
         """Clicks an element given a xpath"""
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, element)))
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, element))).click()
 
     def element_is_displayed(self, element):
-        """Element is displayed given a xpath"""
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, element)))
+        """Element is displayed given a xpath. Returns True if displayed, otherwise False."""
+        try:
+            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, element)))
+            return True
+        except TimeoutException:
+            return False
 
     def element_input_text(self, element, input):
         """Inputs text given a xpath element"""
