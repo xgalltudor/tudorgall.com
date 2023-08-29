@@ -19,6 +19,13 @@ jobs:
     - name: Run Pytest in Docker container
       run: docker run mytestimage python ./SeleniumTests/run.py
 
+    - name: Upload Pytest Reports
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: pytest-reports
+        path: pytest-reports  # Replace with the actual path to your Pytest reports
+
   report:
     if: always()
     needs: [build_and_test]
