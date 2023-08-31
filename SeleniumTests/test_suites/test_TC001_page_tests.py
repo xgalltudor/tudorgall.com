@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.INFO)
 
 @pytest.fixture(scope="module")
 def setup_teardown():
-    driver = webdriver.Chrome()  # Initialize a Chrome driver
+    driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver')
     keywords = Keywords(driver, logger)
     keywords.open_site()
 
