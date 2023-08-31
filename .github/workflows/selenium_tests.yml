@@ -39,6 +39,7 @@ jobs:
         python-version: '3.9'
 
     - name: Update pip
+      if: always()
       run: pip install --upgrade pip
 
     - name: Install dependencies
