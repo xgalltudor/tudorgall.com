@@ -3,3 +3,4 @@ pytest
 pytest-xdist
 pytest-cov
 pytest-html
+pytest-failed-screenshot
