@@ -53,7 +53,7 @@ class Locators:
     negruzzi_xpath = "(//a[normalize-space()='Mathematics and Computer Science Profile'])[1]"
 
     # Download CV
-    download_cv_xpath = "(//strong[normalize-space()='Download my PDF Curriculum Vitae'])[1]"
+    download_cv_xpath = "(//strong[normalize-space()='Download my PDF Curriculum Vitae'])"
 
     # Contact Social Media Links
     linkedin_xpath = "(//a[@href='https://www.linkedin.com/in/tudor-gall'])[1]"

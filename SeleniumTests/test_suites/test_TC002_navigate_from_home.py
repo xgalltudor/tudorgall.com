@@ -1,7 +1,3 @@
-import pytest
-from selenium import webdriver
-import logging
-from test_resources.test_keywords import Keywords
 from test_resources.test_variables import Locators
 
 

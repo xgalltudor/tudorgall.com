@@ -1,9 +1,3 @@
-import pytest
-from selenium import webdriver
-import logging
-from test_resources.test_keywords import Keywords
-
-
 def test_navigate_directly_to_home_page(setup_teardown):
     keywords = setup_teardown
     keywords.navigate_to_page("Home")
