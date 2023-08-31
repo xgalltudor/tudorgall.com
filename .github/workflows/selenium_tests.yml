@@ -44,6 +44,12 @@ jobs:
     - name: Run the PytTest script
       run: pytest --html=report.html
 
+    - name: Upload HTML report
+      uses: actions/upload-artifact@v2
+      with:
+        name: pytest-reports
+        path: report.html
+
   report:
     if: always()
     needs: [build_and_test]
