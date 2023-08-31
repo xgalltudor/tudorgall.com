@@ -28,6 +28,9 @@ jobs:
         google-chrome-stable --version
         chromedriver --version
 
+    - name: Check where chromedriver is located
+      run: which chromedriver
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
