@@ -31,6 +31,9 @@ jobs:
       with:
         python-version: '3.9'
 
+    - name: Install dependencies
+      run: pip install -r ./SeleniumTests/requirements.txt
+
 
     - name: Run the PytTest script
       run: pytest -r ./SeleniumTests
