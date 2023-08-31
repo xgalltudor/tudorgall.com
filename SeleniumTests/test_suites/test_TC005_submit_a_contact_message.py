@@ -4,19 +4,6 @@ import logging
 from test_resources.test_keywords import Keywords
 from test_resources.test_variables import Locators
 
-# Setup logging
-logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
-
-
-@pytest.fixture(scope="module")
-def setup_teardown():
-    driver = webdriver.Chrome()
-    k = Keywords(driver, logger)
-    k.open_site()
-    yield k
-    driver.quit()
-
 
 def test_submit_message_without_completing_fields(setup_teardown):
     keywords = setup_teardown
