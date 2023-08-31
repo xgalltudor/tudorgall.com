@@ -29,19 +29,3 @@ def setup_teardown():
     yield keywords
 
     driver.quit()
-
-
-@pytest.hookimpl(tryfirst=True, hookwrapper=True)
-def pytest_runtest_makereport(item, call):
-    outcome = yield
-    rep = outcome.get_result()
-    setattr(item, "rep_" + rep.when, rep)
-    return rep
-
-
-@pytest.fixture(scope="function", autouse=True)
-def screenshot_on_failure(request, setup_teardown):
-    yield
-    if request.node.rep_call.failed:
-        now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-        setup_teardown.save_screenshot(f"screenshot_{now}.png")
