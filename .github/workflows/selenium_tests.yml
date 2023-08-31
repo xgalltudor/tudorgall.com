@@ -55,6 +55,9 @@ jobs:
       with:
         name: pytest-reports
         path: report.html
+        
+    - name: List Directory Structure Again
+      run: ls -R .
 
     - name: Upload failure screenshots
       if: always()
