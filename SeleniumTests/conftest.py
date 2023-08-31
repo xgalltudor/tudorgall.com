@@ -14,6 +14,7 @@ logging.basicConfig(level=logging.INFO)
 def setup_teardown():
     service = Service(executable_path='/usr/local/bin/chromedriver')
     options = webdriver.ChromeOptions()
+    options.binary_location = "/usr/bin/google-chrome-stable"
     options.add_argument('--no-sandbox')
     options.add_argument('--headless')
     options.add_argument('--disable-dev-shm-usage')
