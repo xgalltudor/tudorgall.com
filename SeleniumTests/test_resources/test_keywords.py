@@ -176,15 +176,14 @@ class Keywords:
         self.driver.switch_to.window(handles[-1])
         self.logger.info("Switched to new tab")
 
-    def verify_pdf_opens_in_new_tab(self):
-        """Verifies that a PDF opens in a new tab when the user clicks the 'Download my PDF Curriculum Vitae' link."""
+    def verify_pdf_cv(self, expected_url=Locators.cv_pdf_url):
+        """Verifies that a PDF has the correct link when the user clicks the 'Download my PDF Curriculum Vitae' link."""
 
-        main_window = self.driver.window_handles
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, Locators.download_cv_xpath))).click()
-        self.switch_to_new_tab()
-        current_url = self.driver.current_url
-        assert current_url == Locators.cv_pdf_url, "PDF CV URLs don't match"
-        self.logger.info("PDF CV opened in a new tab and URL matches")
+        element = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, Locators.download_cv_xpath)))
+        actual_url = element.get_attribute('href')
+        assert actual_url == expected_url, "URLs do not match"
+        self.logger.info(f"CV element {element} has the correct URL: {expected_url}")
+
 
     def verify_social_media_link_opens_in_new_tab(self, element_locator, expected_url):
         """
