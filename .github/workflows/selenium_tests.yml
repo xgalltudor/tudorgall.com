@@ -57,7 +57,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: screenshots
-        path: *.png
+        path: ./*.png
 
   report:
     if: always()
