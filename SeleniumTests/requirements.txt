@@ -2,4 +2,3 @@ selenium
 pytest
 pytest-xdist
 pytest-cov
-webdriver_manager==3.4.2
