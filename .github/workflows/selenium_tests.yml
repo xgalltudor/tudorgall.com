@@ -42,7 +42,7 @@ jobs:
       run: pip install -r ./SeleniumTests/requirements.txt
 
     - name: Run the PytTest script
-      run: pytest -r ./SeleniumTests
+      run: pytest -vv ./SeleniumTests
 
   report:
     if: always()
