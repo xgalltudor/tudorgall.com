@@ -181,8 +181,13 @@ class Keywords:
 
         element = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, Locators.download_cv_xpath)))
         actual_url = element.get_attribute('href')
+        print("Actual URL: ", actual_url)
+        print("Expected URL: ", expected_url)
         assert actual_url == expected_url, "URLs do not match"
         self.logger.info(f"CV element {element} has the correct URL: {expected_url}")
+
+        target_value = element.get_attribute('target')
+        assert target_value == "_blank", "Link does not open in new tab"
 
 
     def verify_social_media_link_opens_in_new_tab(self, element_locator, expected_url):
