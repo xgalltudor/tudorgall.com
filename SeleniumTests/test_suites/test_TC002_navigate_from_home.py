@@ -4,23 +4,6 @@ import logging
 from test_resources.test_keywords import Keywords
 from test_resources.test_variables import Locators
 
-# Setup logging
-logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
-
-
-@pytest.fixture(scope="module")
-def setup_teardown():
-    driver = webdriver.Chrome()
-    keywords = Keywords(driver, logger)
-    keywords.open_site()
-
-    yield keywords  # Provide fixture value
-
-    driver.quit()
-
-# Test cases
-
 
 def test_navigate_to_home_page(setup_teardown):
     keywords = setup_teardown
