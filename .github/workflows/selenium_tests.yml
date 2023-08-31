@@ -45,10 +45,18 @@ jobs:
       run: pytest --html=report.html
 
     - name: Upload HTML report
+      if: always()
       uses: actions/upload-artifact@v2
       with:
         name: pytest-reports
         path: report.html
+
+    - name: Upload failure screenshots
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: screenshots
+        path: *.png
 
   report:
     if: always()
